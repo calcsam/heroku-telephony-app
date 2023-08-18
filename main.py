@@ -12,7 +12,21 @@ import sys
 # docker-compose will load the .env file by itself
 from dotenv import load_dotenv
 
+from vocode.streaming.models.telephony import TwilioConfig
+from pyngrok import ngrok
+from vocode.streaming.telephony.config_manager.redis_config_manager import (
+    RedisConfigManager,
+)
+from vocode.streaming.models.agent import ChatGPTAgentConfig
+from vocode.streaming.models.message import BaseMessage
+from vocode.streaming.telephony.server.base import (
+    TwilioInboundCallConfig,
+    TelephonyServer,
+)
+
 load_dotenv()
+
+"""
 
 
 app = FastAPI()
@@ -23,6 +37,7 @@ def home():
 
 
 """
+
 app = FastAPI(docs_url=None)
 
 logging.basicConfig()
@@ -68,4 +83,3 @@ telephony_server = TelephonyServer(
 )
 
 app.include_router(telephony_server.get_router())
-"""

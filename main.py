@@ -1,3 +1,5 @@
+
+
 import logging
 import os
 from fastapi import FastAPI
@@ -22,6 +24,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message":"Hello TutLinks.com"}
+
+
+"""
 app = FastAPI(docs_url=None)
 
 logging.basicConfig()
@@ -67,3 +78,4 @@ telephony_server = TelephonyServer(
 )
 
 app.include_router(telephony_server.get_router())
+"""
